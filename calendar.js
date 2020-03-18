@@ -13,7 +13,7 @@ function getDaysInMonth(month) {
   return days
 }
 
-function renderDateTimeStr(date) {
+function dateToTimeStr(date) {
   return new Intl.DateTimeFormat(navigator.language).format(date)
 }
 
@@ -22,7 +22,7 @@ function generateDaysHtml(month) {
   return days.map(day => {
       return `
         <button class="day-${day.getDay()}">
-          <time datetime="${renderDateTimeStr(day)}">${day.getDate()}</time>
+          <time datetime="${dateToTimeStr(day)}">${day.getDate()}</time>
         </button>
       `
     })
@@ -37,10 +37,15 @@ function renderDays(month) {
   firstDay.style['grid-column'] = (month.getDay() + 1)
 }
 
+function renderMonth(month) {
+  const formatter = new Intl.DateTimeFormat(navigator.language, { month: 'long', year: 'numeric' })
+  const monthHTML = `<time>${formatter.format(month)}</time>`
+  document.querySelector('.month').innerHTML = monthHTML
+}
 
 function renderCalendar(month = getFirstOfMonth()) {
-  console.log(month)
   renderDays(month)
+  renderMonth(month)
 }
 
 function onReady(fn) {

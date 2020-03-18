@@ -26,9 +26,11 @@ main {
   padding: 0.5em
 }
 
-.month-indicator {
+.month {
+  padding-bottom: 20px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 1.2em;
 }
 
 .day-of-week {
