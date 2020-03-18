@@ -1,4 +1,4 @@
-(function iffy() {
+(function iife() {
   function getFirstOfMonth(month = new Date()) {
     month.setDate(1)
     return month
