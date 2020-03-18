@@ -21,7 +21,7 @@ function generateDaysHtml(month) {
   const days = getDaysInMonth(month)
   return days.map(day => {
       return `
-        <button class="${true}">
+        <button class="day-${day.getDay()}">
           <time datetime="${renderDateTimeStr(day)}">${day.getDate()}</time>
         </button>
       `
