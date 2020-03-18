@@ -3,7 +3,7 @@ function getFirstOfMonth(month = new Date()) {
   return month
 }
 
-function getDaysInMonth(month = MONTH) {
+function getDaysInMonth(month) {
   var date = new Date(month.getTime())
   var days = []
   while (date.getMonth() === month.getMonth()) {
@@ -21,7 +21,7 @@ function generateDaysHtml(month) {
   const days = getDaysInMonth(month)
   return days.map(day => {
       return `
-        <button class="${}">
+        <button class="${true}">
           <time datetime="${renderDateTimeStr(day)}">${day.getDate()}</time>
         </button>
       `
@@ -38,17 +38,16 @@ function renderDays(month) {
 }
 
 
-function renderCalendar() {
-  const month = getFirstOfMonth()
+function renderCalendar(month = getFirstOfMonth()) {
+  console.log(month)
   renderDays(month)
-
 }
 
 function onReady(fn) {
   if (document.readyState !== 'loading') {
     fn()
   } else {
-    document.addEventListener('DOMContentLoaded', fn)
+    document.addEventListener('DOMContentLoaded', () => fn())
   }
 }
 
