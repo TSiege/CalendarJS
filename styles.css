@@ -1,6 +1,8 @@
 :root {
   --red: #f00;
   --grey: #ccc;
+  --dark-grey: #bbb;
+  --white: #fff;
   --black: #000;
 }
 
@@ -14,13 +16,37 @@ body {
   min-height: 100vh;
 }
 
+button:focus {
+  outline: 0;
+}
+
 main {
   max-width: max-content;
   margin: 3em auto 0 auto;
   padding: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.calendar {
+.toggle {
+  font-family: Arial;
+  padding: 15px;
+  border: 0px;
+  margin: 20px;
+  color: var(--white);
+  border-radius: 50%;
+  background: var(--grey);
+  font-size: 0.75em;
+  font-weight: 800;
+}
+
+.toggle:hover {
+  cursor: pointer;
+  background: var(--dark-grey);
+}
+
+.calendar-days {
   border: 1.25px solid var(--grey);
   border-radius: 6px;
   padding: 0.5em
