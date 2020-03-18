@@ -13,16 +13,13 @@ function getDaysInMonth(month) {
   return days
 }
 
-function dateToTimeStr(date) {
-  return new Intl.DateTimeFormat(navigator.language).format(date)
-}
-
 function generateDaysHtml(month) {
   const days = getDaysInMonth(month)
+  const dateFormatter = new Intl.DateTimeFormat(navigator.language)
   return days.map(day => {
       return `
         <button class="day-${day.getDay()}">
-          <time datetime="${dateToTimeStr(day)}">${day.getDate()}</time>
+          <time datetime="${dateFormatter.format(day)}">${day.getDate()}</time>
         </button>
       `
     })
@@ -38,8 +35,8 @@ function renderDays(month) {
 }
 
 function renderMonth(month) {
-  const formatter = new Intl.DateTimeFormat(navigator.language, { month: 'long', year: 'numeric' })
-  const monthHTML = `<time>${formatter.format(month)}</time>`
+  const dateFormatter = new Intl.DateTimeFormat(navigator.language, { month: 'long', year: 'numeric' })
+  const monthHTML = `<time>${dateFormatter.format(month)}</time>`
   document.querySelector('.month').innerHTML = monthHTML
 }
 
