@@ -17,9 +17,11 @@
   function generateDaysHtml(month) {
     const days = getDaysInMonth(month)
     const dateFormatter = new Intl.DateTimeFormat(navigator.language)
-    return days.map(day => {
+    return days.map((day, i) => {
+        const firstOfMonthClass = i === 0 ? `first-of-month-day-${day.getDay()}` : ''
+        const className = `day-${day.getDay()} ${firstOfMonthClass}`.trim()
         return `
-          <button class="day-${day.getDay()}">
+          <button class="${className}">
             <time datetime="${dateFormatter.format(day)}">${day.getDate()}</time>
           </button>
         `
@@ -31,8 +33,6 @@
     const daysHtml = generateDaysHtml(month)
     const dateGrid = document.querySelector('.date-grid')
     dateGrid.innerHTML = daysHtml
-    const firstDay = document.querySelector('.date-grid button:first-child')
-    firstDay.style['grid-column'] = (month.getDay() + 1)
   }
 
   function renderMonth(month) {
