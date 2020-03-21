@@ -17,9 +17,11 @@
   function generateDaysHtml(month) {
     const days = getDaysInMonth(month)
     const dateFormatter = new Intl.DateTimeFormat(navigator.language)
-    return days.map(day => {
+    return days.map((day, i) => {
+        const firstOfMonthClass = i === 0 ? `first-of-month-day-${day.getDay()}` : ''
+        const className = `day-${day.getDay()} ${firstOfMonthClass}`.trim()
         return `
-          <button class="day-${day.getDay()}">
+          <button class="${className}">
             <time datetime="${dateFormatter.format(day)}">${day.getDate()}</time>
           </button>
         `
@@ -31,8 +33,6 @@
     const daysHtml = generateDaysHtml(month)
     const dateGrid = document.querySelector('.date-grid')
     dateGrid.innerHTML = daysHtml
-    const firstDay = document.querySelector('.date-grid button:first-child')
-    firstDay.style['grid-column'] = (month.getDay() + 1)
   }
 
   function renderMonth(month) {
@@ -44,6 +44,19 @@
   function renderCalendar(month) {
     renderDays(month)
     renderMonth(month)
+  }
+
+  function renderDaysOfWeek() {
+    // days are hardcoded UTC timestamps to a week that begins on sunday and ends on saturday
+    const sundayThroughSaturdayUTCUnixTimes = [1583038800000, 1583125200000, 1583211600000, 1583298000000, 1583384400000, 1583470800000, 1583557200000]
+    const dateFormatter = new Intl.DateTimeFormat(navigator.language, { weekday: 'narrow' })
+    const daysOfWeekHTML = sundayThroughSaturdayUTCUnixTimes
+      .map(timestamp => {
+        const date = new Date(timestamp)
+        return `<div class="day-${date.getDay()}">${dateFormatter.format(date)}</div>`
+      })
+      .join('\n')
+    document.querySelector('.day-of-week').innerHTML = daysOfWeekHTML
   }
 
   function addEventTogglers(month) {
@@ -64,6 +77,7 @@
   function renderHTML() {
     const month = getFirstOfMonth()
     renderCalendar(month)
+    renderDaysOfWeek()
     addEventTogglers(month)
   }
 
