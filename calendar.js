@@ -18,8 +18,7 @@
     const days = getDaysInMonth(month)
     const dateFormatter = new Intl.DateTimeFormat(navigator.language)
     return days.map((day, i) => {
-        const firstOfMonthClass = i === 0 ? `first-of-month-day-${day.getDay()}` : ''
-        const className = `day-${day.getDay()} ${firstOfMonthClass}`.trim()
+        const className = i === 0 ? `day-${day.getDay()} first-of-month-day-${day.getDay()}` : `day-${day.getDay()}`
         return `
           <button class="${className}">
             <time datetime="${dateFormatter.format(day)}">${day.getDate()}</time>
