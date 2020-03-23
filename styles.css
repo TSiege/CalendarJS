@@ -17,6 +17,7 @@ button:focus {
 }
 
 main {
+  height: 320px;
   max-width: max-content;
   margin: 3em auto 0 auto;
   padding: 1.5em;
