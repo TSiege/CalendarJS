@@ -8,12 +8,8 @@
 
 html {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-size: 125%;
+  font-size: 2vmax;
   line-height: 1.4;
-}
-
-body {
-  min-height: 100vh;
 }
 
 button:focus {
@@ -21,12 +17,12 @@ button:focus {
 }
 
 main {
+  height: 320px;
   max-width: max-content;
   margin: 3em auto 0 auto;
   padding: 1.5em;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .toggle {
